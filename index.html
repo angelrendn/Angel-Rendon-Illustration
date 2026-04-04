@@ -1,150 +1,166 @@
 <!DOCTYPE html>
-<html lnag="es">
-  <head>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angel Rendon Illustration</title>
-
-    <style>
-      /* ESTILO GENERAL DE LA PAGINA */
-      body{
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-      }
-       /* CONTENEDORES LOGO */
-      .contenedor-logo{
-        text-align: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-      }
-      .contenedor-logo img{
-        max-width: 150px;
-        height: auto;
-      }
-       /* CONTENEDORES IMAGEN 1 */
-      .contenedor-imagen-1{
-        text-align: center;
-        padding: 0 20px;
-      }
-      .contenedor-imagen-1 img{
-        max-width: 700px;
-        width: 100%;
-        heigth: auto;
-        cursor: pointer; /* Cambia el cursor a una manito */
-        transition: transform 0.3s ease; /* animación al pasar el ratón */
-      }
-      .contenedor-imagen-1 img:hover{
-        transform: scale(1.02); /* Hace que la imagen crezca un poquito al pasar el mouse */
-      }
-      /* ESTILO DEL MODAL (LIGHTBOX) */
-      .modal{
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(249, 249, 249, 1.0); /* Fondo negro semitransparente */
-
-        justify-content: center;
-        align-items: center;
-      }
-      /* CAJA BLANCA DENTRO DEL MODAL */
-      modal-contenido{
-        display: flex;
-        background-color: white;
-        padding: 20px;
-        max-width: 900px;
-        width: 90%;
-        gap: 20px; /* Espacio entre la imagen y el texto */
-        box-sizing: border-box;
-        position: relative;
-      }
-      /* IMAGEN DENTRO DEL MODAL */
-      .modal-imagen{
-        max-width: 50%;
-        height: auto;
-        object-fit: cover;
-      }
-      /* TEXTO DENTRO DEL MODAL */
-      .modal-texto{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      /* BOTON (X) PARA CERRAR */
-      .cerrar{
-        position: absolute;
-        top: 10px;
-        rigth: 20px;
-        color: #333;
-        font-size: 30px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      .cerrar:hover{
-        color: red;
-      }
-      /* ADAPTACION PARA MOVILES */
-      @media (max-width: 768px){
-        .modal-contenido{
-          flex-direction: column;
-        }
-        .modal-imagen{
-          max-width: 100%;
-        }
-      }
-      
-      
-    </style>
-  </head>
-  <body>
-    <header class="contenedor-logo">
-      <img src="logo.png" alt="logo">
-    </header>
+    <title>Mi Portafolio</title>
     
+    <style>
+        /* ----- ESTILOS GENERALES ----- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* ----- ESTILOS DEL LOGO ----- */
+        .contenedor-logo {
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+        .contenedor-logo img {
+            max-width: 250px;
+            height: auto;
+        }
+
+        /* ----- ESTILOS DE LA IMAGEN PRINCIPAL (MINIATURA) ----- */
+        .contenedor-imagen-principal {
+            text-align: center;
+            padding: 0 20px;
+        }
+        .contenedor-imagen-principal img {
+            max-width: 800px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer; /* Cambia el cursor a una 'manito' para indicar que es clickeable */
+            transition: transform 0.3s ease; /* Pequeña animación al pasar el ratón */
+        }
+        .contenedor-imagen-principal img:hover {
+            transform: scale(1.02); /* Hace que la imagen crezca un poquito al pasar el mouse */
+        }
+
+        /* ----- ESTILOS DEL MODAL (LA VENTANA EMERGENTE) ----- */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Se queda fijo en la pantalla */
+            z-index: 1000; /* Se asegura de estar por encima de todo */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo negro semitransparente */
+            
+            /* Usamos Flexbox para centrar la caja blanca en la pantalla */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* La caja blanca dentro del modal */
+        .modal-contenido {
+            display: flex;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 900px;
+            width: 90%;
+            gap: 20px; /* Espacio entre la imagen y el texto */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* La imagen grande dentro del modal */
+        .modal-imagen {
+            max-width: 50%; /* La imagen ocupa la mitad de la caja */
+            height: auto;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        /* El texto dentro del modal */
+        .modal-texto {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* El botón (X) para cerrar */
+        .cerrar {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #333;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .cerrar:hover {
+            color: red;
+        }
+
+        /* ----- ADAPTACIÓN PARA CELULARES ----- */
+        @media (max-width: 768px) {
+            .modal-contenido {
+                flex-direction: column; /* Pone la imagen arriba y el texto abajo en pantallas pequeñas */
+            }
+            .modal-imagen {
+                max-width: 100%; /* La imagen ocupa todo el ancho disponible */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="contenedor-logo">
+        <img src="ruta-a-tu-logo.png" alt="Mi Logo Personal">
+    </header>
+
     <main>
-      <section class="contenedor-imagen-1">
-        <img id="miniatura" src="polar-bears-landscape.png" alt="imagen 1">
-      </section>
+        <section class="contenedor-imagen-principal">
+            <img id="miniatura" src="tu-primera-imagen.jpg" alt="Imagen principal de mi portafolio">
+        </section>
     </main>
 
     <div id="miModal" class="modal">
-      <div class="modal-contenido">
-        <span class="cerrar" id="botonCerrar">&times;</span>
-        <img class="modal-imagen" id="imagenEnorme" src="" alt="Imagen ampliada">
-
-        <div class="modal-texto">
-          <h2>Frozen Planet</h2>
-          <p>Personal project</p>
+        <div class="modal-contenido">
+            <span class="cerrar" id="botonCerrar">&times;</span>
+            <img class="modal-imagen" id="imagenEnorme" src="" alt="Imagen ampliada">
+            
+            <div class="modal-texto">
+                <h2>Título de tu proyecto</h2>
+                <p>Aquí puedes escribir una breve descripción de esta imagen. Puedes explicar qué herramientas usaste, qué representa, o cuánto tiempo te tomó hacerlo.</p>
+            </div>
         </div>
-      </div>
     </div>
 
     <script>
-      const miniatura= document.getElementById('miniatura');
-      const modal= document.getElementById('miModal');
-      const imagenEnorme= document.getElementById('imagenEnorme');
-      const botonCerrar= document.getElementById('botonCerrar');
+        // Guardamos las referencias a los elementos HTML en variables
+        const miniatura = document.getElementById('miniatura');
+        const modal = document.getElementById('miModal');
+        const imagenEnorme = document.getElementById('imagenEnorme');
+        const botonCerrar = document.getElementById('botonCerrar');
 
-      miniatura.addEventListener('click', function(){
-        modal.style.display= 'flex';
-        imagenEnorme.src= this.src;
-      });
+        // Cuando el usuario hace clic en la imagen principal...
+        miniatura.addEventListener('click', function() {
+            modal.style.display = 'flex'; // Mostramos el modal
+            imagenEnorme.src = this.src;  // Le pasamos la misma ruta de la imagen original a la imagen grande
+        });
 
-      botonCerrar.addEventListener('click', function(){
-        modal.style.display= 'none';
-      });
+        // Cuando el usuario hace clic en la (X)...
+        botonCerrar.addEventListener('click', function() {
+            modal.style.display = 'none'; // Ocultamos el modal
+        });
 
-      window.addEventListener('click', function(event){
-        if (event.target == modal){
-          modal.style.display = 'none';
-        }
-      });
+        // Cuando el usuario hace clic fuera de la caja blanca (en el fondo oscuro)...
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none'; // Ocultamos el modal
+            }
+        });
     </script>
-    
-  </body>
+
+</body>
 </html>

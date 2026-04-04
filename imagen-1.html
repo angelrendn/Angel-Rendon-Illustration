@@ -56,7 +56,7 @@
     <main>
 
         <!-- IMAGE AND TEXT FLEXBOX -->
-        <div style="display: flex; align-items: top; gap: 20px; margin: 20px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: top; gap: 20px; margin: 20px;">
             <section class="contenedor-imagen-1">
                 <img 
                     src="polar-bears-landscape.png" 
@@ -64,7 +64,7 @@
                     onclick="document.getElementById('zoom').style.display= 'flex'">
             </section>
 
-            <div>
+            <div style="flex: 1; min-width: 250px;">
                 <h3 style="color: rgb(29, 52, 58);">Frozen Planet</h3>
                 <p style="color: rgb(29, 52, 58); font-weight: 300;">Personal project inspired by the Frozen Planet series</p>
             </div>
